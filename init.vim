@@ -24,6 +24,7 @@ Plug 'mitsuse/autocomplete-swift'
 Plug 'keith/swift.vim'
 Plug 'fatih/molokai'
 Plug 'chriskempson/base16-vim'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -144,3 +145,6 @@ nmap <leader>o <Plug>(CommandT)
 nmap <leader>p <Plug>(CommandTBuffer)
 
 autocmd FileType swift imap <buffer> <C-j> <Plug>(deoplete_swift_jump_to_placeholder)
+
+set encoding=utf8
+set fileencoding=utf8

@@ -2,7 +2,10 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'rakr/vim-one'
+Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -10,19 +13,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'posva/vim-vue' 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fatih/vim-go'
-Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neomake/neomake'
 Plug 'tpope/vim-ragtag'
-Plug 'jodosha/vim-godebug'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 Plug 'wincent/command-t', { 'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 Plug 'mitsuse/autocomplete-swift'
 Plug 'keith/swift.vim'
-Plug 'fatih/molokai'
 Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
 
@@ -58,7 +57,7 @@ set number
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'base16_tomorrow'
+let g:airline_theme = 'one'
 
 "Go
 
@@ -81,7 +80,10 @@ let g:go_term_mode = "split"
 
 let base16colorspace=256
 set termguicolors
-colorscheme base16-tomorrow-night
+"colorscheme base16-tomorrow-night
+let g:one_allow_italics = 1
+colorscheme one
+set background=dark
 
 "Split
 
@@ -143,8 +145,13 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 
 nmap <leader>o <Plug>(CommandT)
 nmap <leader>p <Plug>(CommandTBuffer)
+let g:CommandTTraverseSCM = 'pwd'
 
 autocmd FileType swift imap <buffer> <C-j> <Plug>(deoplete_swift_jump_to_placeholder)
 
 set encoding=utf8
 set fileencoding=utf8
+set tw=80
+set fo+=t
+
+autocmd BufWritePost *.proto !command ./generate.sh
